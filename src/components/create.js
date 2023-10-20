@@ -3,12 +3,19 @@ import { useState } from "react";
 function Create(){
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [frontURL, setFrontURl] = useState('');
+    const [frontURL, setFrontURL] = useState('');
 
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+
+        console.log("Title: "+title+
+        " Cover: "+author+
+        "Front Cover URL: "+frontURL);
+    }
     //Created along with the read component. Yet to be used.
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 {/* Title */}
                 <div className="form-group">
                     <label>Add Book Title: </label>
@@ -26,7 +33,7 @@ function Create(){
                     <input type="text"
                         className="form-control"
                         value={author}
-                        onChange={(e) => { setTitle(e.target.value) }}
+                        onChange={(e) => { setAuthor(e.target.value) }}
                     />
                 </div>
                 {/* URL */}
@@ -36,8 +43,12 @@ function Create(){
                     <input type="text"
                         className="form-control"
                         value={frontURL}
-                        onChange={(e) => { setTitle(e.target.value) }}
+                        onChange={(e) => { setFrontURL(e.target.value) }}
                     />
+                </div>
+                <br/>
+                <div>
+                    <input type="submit" value="Add Book"></input>
                 </div>
             </form>
         </div>
