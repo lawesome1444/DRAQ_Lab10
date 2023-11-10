@@ -93,10 +93,8 @@ app.get('/api/books', (req, res) => {
 
   // This is an Express route for handling a POST request to the '/name' endpoint
   app.post('/api/books', (req, res) => {
-    console.log("post method");
-    console.log(req.body.firstname);
-     // Send a response back to the client with fname and lname
-    res.send('Hello ' + req.body.firstname + " " + req.body.lastname);
+    console.log(req.body);
+    res.send("Data Received");
   })
 
 
