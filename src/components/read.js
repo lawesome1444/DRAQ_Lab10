@@ -11,11 +11,11 @@ function Read(){
     useEffect(
       ()=>{
         //Using axios, access the API and retrieve the book data from it
-        axios.get("https://jsonblob.com/api/jsonblob/1161593332966481920")
+        axios.get("http://localhost:4000/api/books")
         //If we get data
         .then(
           (response)=>{//Then....
-            setData(response.data.books);
+            setData(response.data.data);
           }
         )
         .catch(
