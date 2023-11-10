@@ -92,7 +92,7 @@ app.get('/api/books', (req, res) => {
   app.use(bodyParser.json());
 
   // This is an Express route for handling a POST request to the '/name' endpoint
-  app.post('/name', (req, res) => {
+  app.post('/api/books', (req, res) => {
     console.log("post method");
     console.log(req.body.firstname);
      // Send a response back to the client with fname and lname
