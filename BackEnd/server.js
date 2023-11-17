@@ -22,9 +22,12 @@ async function main() {
 //Mongoose Schema
 const bookSchema = new mongoose.Schema({
   title:String,
-  cover:String,
+  frontURL:String,
   author:String
 });
+
+//Used when interacting with the database
+const bookModel = mongoose.model('books', bookSchema);
 
 //Importing CORS, unwanted HTTP request protection
 const cors = require('cors');
@@ -114,7 +117,16 @@ app.get('/api/books', (req, res) => {
   // This is an Express route for handling a POST request to the '/name' endpoint
   app.post('/api/books', (req, res) => {
     console.log(req.body);
-    res.send("Data Received");
+
+    bookModel.create({
+      title:req.body.title,
+      frontURL:req.body.frontURL,
+      author:req.body.author
+    })
+    .then(()=>{res.send("Data Received")})
+    .catch(()=>{res.send("Data Not Received")})
+
+    
   })
 
 
