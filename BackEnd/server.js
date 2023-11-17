@@ -58,8 +58,21 @@ app.get('/hello/:name', (req, res) => {
 app.get('/api/books', async(req, res) => {
     //Find all records in the Mongo database
     let books = await bookModel.find({});
+    //Return them to read.js
     res.json(books);
    
+  })
+
+
+//Get details for a single book via the id typed after /api/book/
+  app.get('/api/book/:id', async(req, res)=>{
+    //Log the id typed by the user (../id)
+    console.log(req.params.id);
+
+    //find the book details by ID
+    let book = await bookModel.findById({_id:req.params.id});
+    //Send book details to server console
+    res.send(book);
   })
 
   //Listen for localhost:4000/test
