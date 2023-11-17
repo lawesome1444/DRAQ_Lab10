@@ -15,7 +15,7 @@ function Read(){
         //If we get data
         .then(
           (response)=>{//Then....
-            setData(response.data.myBooks);
+            setData(response.data);
           }
         )
         .catch(

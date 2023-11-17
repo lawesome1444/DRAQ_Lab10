@@ -8,8 +8,8 @@ function BookItems(props) {
         <div className="App">
             <Card style={{ width: '120rem' }}></Card>
             <Card.Title>{props.booksDetails.title}</Card.Title>
-            <img src={props.booksDetails.thumbnailUrl}></img>
-            <p>{props.booksDetails.authors}</p>
+            <img src={props.booksDetails.frontURL}></img>
+            <p>{props.booksDetails.author}</p>
         </div>
     );
 }
