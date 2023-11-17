@@ -6,6 +6,19 @@ const path = require('path');
 //Importing body parser
 const bodyParser = require("body-parser");
 
+
+//Importing Mongoose
+// getting-started.js
+const mongoose = require('mongoose');
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb+srv://draqlab7:admin@conorcluster.9mvkxp3.mongodb.net/?retryWrites=true&w=majority');
+
+  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+}
+
 //Importing CORS, unwanted HTTP request protection
 const cors = require('cors');
 app.use(cors());
