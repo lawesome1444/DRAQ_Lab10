@@ -29,10 +29,11 @@ const bookSchema = new mongoose.Schema({
 //Used when interacting with the database
 const bookModel = mongoose.model('books', bookSchema);
 
-//Importing CORS, unwanted HTTP request protection
+//Importing CORS
 const cors = require('cors');
 app.use(cors());
 
+//Unwanted HTTP request protection
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -47,8 +48,6 @@ app.get('/', (req, res) => {
 })
 
 //Configuring Body-Parser as middleware for name request
-
-
 app.get('/hello/:name', (req, res) => {
     console.log(req.params.name);
     res.send('Hello '+req.params.name);
@@ -95,12 +94,15 @@ app.get('/api/books', async(req, res) => {
   app.post('/api/books', (req, res) => {
     console.log(req.body);
 
+    //Create a new book in the database with the following:
     bookModel.create({
       title:req.body.title,
       frontURL:req.body.frontURL,
       author:req.body.author
     })
+    //If the data is successfully sent, notify the user
     .then(()=>{res.send("Data Received")})
+    //Ditto in case data fails to be sent to the Mongo DataBase
     .catch(()=>{res.send("Data Not Received")})
 
     

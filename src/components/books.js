@@ -4,6 +4,8 @@ function Books(props) {
   /*
   Gives bookItems.js the data so it can parse and add book entries and the html code.
   Then it gives it Book.js, which then returns it back to read.js to print the book list to the page
+
+  Since Lab 7, each book is assigned a unique identifier received by MongoDB
   */
   return props.booksDetails.map(
       (book)=>{
