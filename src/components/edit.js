@@ -43,7 +43,7 @@ export default function Edit(props) {
     axios.put('http://localhost:4000/api/book/' + id, newBook)
         .then((res) => {
             console.log(res.data);
-            navigate('/read');
+            navigate('/read1');
         });
     }
     return (

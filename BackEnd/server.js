@@ -53,22 +53,21 @@ app.get('/hello/:name', (req, res) => {
     res.send('Hello '+req.params.name);
   })
 
-//Book API HTTP request
-app.get('/api/books', async(req, res) => {
-    //Find all records in the Mongo database
-    let books = await bookModel.find({});
-    //Return them to read.js
-    res.json(books);
-   
-  })
   //Server will listen to HTTP put method so we can edit book details and upload them to mongoDB
   app.put('/api/book/:id', async(req, res)=>{
+    console.log("Update: "+req.params.id);
     //Use the book at ID and replace the details with the ones filled on the body of edit.js
     let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
     res.send(book);
-
   })
-
+//Book API HTTP request
+app.get('/api/books', async(req, res) => {
+  //Find all records in the Mongo database
+  let books = await bookModel.find({});
+  //Return them to read.js
+  res.json(books);
+ 
+})
 
 //Get details for a single book via the id typed after /api/book/
   app.get('/api/book/:id', async(req, res)=>{
@@ -80,6 +79,7 @@ app.get('/api/books', async(req, res) => {
     //Send book details to server console
     res.send(book);
   })
+  
 
   //Listen for localhost:4000/test
   app.get('/test', (req, res) => {
