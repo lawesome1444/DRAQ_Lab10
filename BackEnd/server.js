@@ -61,6 +61,13 @@ app.get('/api/books', async(req, res) => {
     res.json(books);
    
   })
+  //Server will listen to HTTP put method so we can edit book details and upload them to mongoDB
+  app.put('/api/book/:id', async(req, res)=>{
+    //Use the book at ID and replace the details with the ones filled on the body of edit.js
+    let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    res.send(book);
+
+  })
 
 
 //Get details for a single book via the id typed after /api/book/
