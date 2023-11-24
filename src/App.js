@@ -5,6 +5,7 @@ import Header from './components/header';
 import Content from './components/content';
 import Read from './components/read';
 import Create from './components/create';
+import Edit from './components/edit'
 //Adding Bootstrap and different React/NodeJS modules
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
@@ -38,6 +39,7 @@ function App() {
       <Route path='/read' element={<Footer></Footer>}></Route>
       <Route path='/read1' element={<Read></Read>}></Route>
       <Route path='/create1' element={<Create></Create>}></Route>
+      <Route path='/edit/:id' element={<Edit></Edit>}></Route>
       </Routes>
     </div>
     </BrowserRouter>
