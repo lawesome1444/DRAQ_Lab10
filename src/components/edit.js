@@ -11,7 +11,7 @@ export default function Edit(props) {
     // update arrays using the React useState()
     // and without the Array objects push() method
     const [title, setTitle] = useState("");
-    const [cover, setCover] = useState("");
+    const [frontURL, setfrontURL] = useState("");
     const [author, setAuthor] = useState("");
     // useNavigate return a function that we can use to navigate
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Edit(props) {
         .then((response) => {
             // Assign Response data to the arrays using useState.
             setTitle(response.data.title);
-            setCover(response.data.cover);
+            setfrontURL(response.data.frontURL);
             setAuthor(response.data.author);
         })
             .catch(function (error) {
@@ -37,7 +37,7 @@ export default function Edit(props) {
     const newBook = {
         id: id,
         title: title,
-        cover: cover,
+        frontURL: frontURL,
         author: author
     };
     axios.put('http://localhost:4000/api/book/' + id, newBook)
@@ -58,16 +58,16 @@ export default function Edit(props) {
         />
         </div>
             <div className="form-group">
-            <label>Add Release Year: </label>
+            <label>Add Cover: </label>
             <input type="text"
             className="form-control"
-            value={cover}
-            onChange={(e) => setCover(e.target.value)}
+            value={frontURL}
+            onChange={(e) => setfrontURL(e.target.value)}
         />
         </div>
             <div className="form-group">
 
-            <label>Add Poster Url: </label>
+            <label>Add Author: </label>
             <input type="text"
             className="form-control"
             value={author}
