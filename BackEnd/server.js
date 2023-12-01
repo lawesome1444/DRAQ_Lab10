@@ -6,6 +6,19 @@ const path = require('path');
 //Importing body parser
 const bodyParser = require("body-parser");
 
+  //Importing CORS
+  const cors = require('cors');
+  app.use(cors());
+
+  //Unwanted HTTP request protection
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept");
+    next()
+  });
+
 
 //Importing Mongoose
 // getting-started.js
@@ -46,19 +59,6 @@ app.delete('/api/book/:id', async(req, res)=>{
   res.send(book);
 })
 
-
-//Importing CORS
-const cors = require('cors');
-app.use(cors());
-
-//Unwanted HTTP request protection
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept");
-    next()
-});
 
 //Waiting for a HTTP request with a get
 app.get('/', (req, res) => {
