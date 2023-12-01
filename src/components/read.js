@@ -25,14 +25,30 @@ function Read(){
         )
       },[]
     );
-
+      
+    //Refresh page after deleting items from database
+      //(In this case, just get the data again)
+    const ReloadData = (e) => {
+        axios.get("http://localhost:4000/api/books")
+        //If we get data
+        .then(
+          (response)=>{//Then....
+            setData(response.data);
+          }
+        )
+        .catch(
+          (error)=>{
+            console.log(error);
+          }
+        )
+    }
 
       //First h3 tagged HTML line is from 2(a)
       //The second essentially is "Fill in the blanks from the Books template with every entry in the Book List array"
     return(
         <div>
             <h3>Read Component</h3>
-            <Books booksDetails={data}></Books>
+            <Books booksDetails={data} Reload={ReloadData}></Books>
         </div>
     );
 }
