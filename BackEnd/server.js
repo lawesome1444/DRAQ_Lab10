@@ -26,6 +26,11 @@ const bookSchema = new mongoose.Schema({
   author:String
 });
 
+
+  //Configuring Body-Parser to be used as middleware
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+
 //Used when interacting with the database
 const bookModel = mongoose.model('books', bookSchema);
 
@@ -75,7 +80,8 @@ app.get('/api/books', async(req, res) => {
     console.log(req.params.id);
 
     //find the book details by ID
-    let book = await bookModel.findById({_id:req.params.id});
+      //There was a semi-colon put at the end of this.
+    let book = await bookModel.findById({_id:req.params.id})
     //Send book details to server console
     res.send(book);
   })
@@ -92,10 +98,6 @@ app.get('/api/books', async(req, res) => {
   app.get('/name', (req, res) => {
     res.send("Hello "+req.query.fname+" "+req.query.lname);
   })
-
-  //Configuring Body-Parser to be used as middleware
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
 
   // This is an Express route for handling a POST request to the '/name' endpoint
   app.post('/api/books', (req, res) => {
