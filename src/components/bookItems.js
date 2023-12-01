@@ -1,5 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 function BookItems(props) {
     //Creates a div, puts a card in it then fills that card with the book details
     //It does this for every entry, then returns them to book.js
@@ -12,6 +14,13 @@ function BookItems(props) {
             <img src={props.booksDetails.frontURL}></img>
             <p>{props.booksDetails.author}</p>
             <Link to={"/edit/"+props.booksDetails._id} className='btn btn-primary'>Edit</Link>
+            <Button variant="danger" onClick={
+                (e)=>{
+                    axios.delete('http://localhost:4000/api/book/'+props.booksDetails._id)
+                    .then()
+                    .catch();
+                }
+            }>Delete</Button>
         </div>
     );
 }
