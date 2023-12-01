@@ -34,6 +34,19 @@ const bookSchema = new mongoose.Schema({
 //Used when interacting with the database
 const bookModel = mongoose.model('books', bookSchema);
 
+//Listen for a HTTP request that has a delete method
+app.delete('/api/book/:id', async(req, res)=>{
+  //Log book id marked to be deleted
+  console.log("Delete: "+req.params.id);
+
+  //Find the book in the database and delete it
+  let book = await bookModel.findByIdAndDelete(req.params.id);
+
+  //Send book info back
+  res.send(book);
+})
+
+
 //Importing CORS
 const cors = require('cors');
 app.use(cors());
