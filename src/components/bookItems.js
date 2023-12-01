@@ -16,8 +16,10 @@ function BookItems(props) {
             <Link to={"/edit/"+props.booksDetails._id} className='btn btn-primary'>Edit</Link>
             <Button variant="danger" onClick={
                 (e)=>{
-                    axios.delete('http://localhost:4000/api/book/'+props.booksDetails._id)
-                    .then()
+                    axios.delete('http://localhost:4000/api/book/' +props.booksDetails._id)
+                    .then(()=>{
+                        let reload = props.reload();
+                    })
                     .catch();
                 }
             }>Delete</Button>
