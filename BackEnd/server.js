@@ -6,6 +6,12 @@ const path = require('path');
 //Importing body parser
 const bodyParser = require("body-parser");
 
+// Serve the static files from the React app
+//const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+
   //Importing CORS
   const cors = require('cors');
   app.use(cors());
@@ -135,3 +141,10 @@ app.get('/api/books', async(req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 })
+
+
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/../build/index.html'));
+  });
+  
